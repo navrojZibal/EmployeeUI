@@ -1,0 +1,83 @@
+<div class="container">
+  <div class="search-div">
+      <button mat-raised-button (click)="onCreate()">
+        <mat-icon>accessibility_new</mat-icon>Create
+      </button>
+      <mat-form-field class="search-form-field" floatLabel="never" appearence="outline"> 
+          <input matInput  [(ngModel)]="searchKey" placeholder="Search" autocomplete="on" (keyup) = "applyFilter()">
+          <button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
+              <mat-icon>close</mat-icon>
+          </button>
+      </mat-form-field>
+  </div>
+  <div >
+
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" align="center">
+
+        <!-- <ng-container matColumnDef="id">
+          <th mat-header-cell  *matHeaderCellDef style="font-weight: bold;" mat-sort-header> ID </th>
+          <td mat-cell *matCellDef="let element; let even = even;"  
+          [ngClass]="{gray: even}" > {{element.id}} </td>
+        </ng-container> -->
+      
+        <ng-container matColumnDef="name">
+          <th mat-header-cell  *matHeaderCellDef style="font-weight: bold;" >Name</th>
+          <td mat-cell *matCellDef="let element ;let even = even;"  
+          [ngClass]="{gray: even}"> {{element.firstname}} {{element.lastname}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="designation">
+          <th mat-header-cell  *matHeaderCellDef style="font-weight: bold;"> Designation </th>
+          <td mat-cell *matCellDef="let element;let even = even;"  
+          [ngClass]="{gray: even}"> {{element.designation}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="gender">
+          <th mat-header-cell *matHeaderCellDef style="font-weight: bold;"> Gender </th>
+          <td mat-cell *matCellDef="let element;let even = even"  
+          [ngClass]="{gray: even}"> {{element.gender}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef style="font-weight: bold;" > D.O.B
+            <span>(DD/MM/YY)</span>
+          </th>
+          <td mat-cell *matCellDef="let element;let even = even;"  
+          [ngClass]="{gray: even}"> {{element.dob |date :  "dd/MM/y" }}  </td>
+        </ng-container>
+
+        <ng-container matColumnDef="salary">
+          <th mat-header-cell *matHeaderCellDef style="font-weight: bold;"> Salary </th>
+          <td mat-cell *matCellDef="let element;let even = even"  
+          [ngClass]="{gray: even}"> {{element.salary}}/m </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef style="font-weight: bold;">Actions</th>
+            <td mat-cell *matCellDef="let row;let even = even;" [ngClass]="{gray: even}"> 
+                <button mat-icon-button color="primary" (click)="onDetail(row)"><mat-icon>description</mat-icon></button>
+                <button mat-icon-button (click)="onEdit(row)"><mat-icon>launch</mat-icon></button>
+                <button mat-icon-button color="warn" (click)="onDelete(row.id)"><mat-icon>delete_outline</mat-icon></button> 
+            </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="loading">
+            <mat-footer-cell *matFooterCellDef aria-colspan="6">
+                Loading Data...
+            </mat-footer-cell>
+        </ng-container>
+        
+        <ng-container matColumnDef="noData">
+          <mat-footer-cell *matFooterCellDef colspan="6">
+            No data.
+          </mat-footer-cell>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':dataSource != null}"></tr>
+        <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(dataSource!=null && dataSource.data.length==0)}"></mat-footer-row>
+    </table>
+    
+  </div>
+</div>

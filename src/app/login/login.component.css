@@ -1,0 +1,15 @@
+.padding mat-card{
+    padding: 0px;
+    border-radius: 10px;
+}
+.form-pad{
+    padding: 20px;
+}
+
+.text-padding{
+    padding-top: 20px;
+}
+
+.border{
+    color: aqua;
+}

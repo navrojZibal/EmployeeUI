@@ -1,0 +1,15 @@
+.btn-dialog-close{
+    width: 45px;
+    min-width: 0px;
+    height: 40px;
+    padding: 0px !important;
+}
+
+.example-card {
+    max-width: 400px;
+  }
+  
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }

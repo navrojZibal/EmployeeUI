@@ -1,0 +1,75 @@
+<mat-toolbar style="background-color: #75a89b70;">
+    <span >{{service.employeeForm.controls['id'].value?"Update Employee":"Add Employee"}}</span>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1">
+        <mat-icon>clear</mat-icon>
+    </button>
+</mat-toolbar>
+  <form [formGroup]="service.employeeForm" class="normal-form">
+    <mat-grid-list cols="2" rowHeight="300px">
+      <mat-grid-tile>
+        <div class="controles-container">
+          <input type="hidden" formControlName="id">
+         
+          <mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input formControlName="firstname" matInput placeholder="First Name*">
+            <mat-error>This field is mandatory.</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input formControlName="lastname" matInput placeholder="Last Name">
+          </mat-form-field>
+          
+          <mat-form-field appearance="outline" >
+            <mat-label>Designation*</mat-label>
+            <mat-select matNativeControl formControlName="designation">
+              <mat-option value="Software Engineer">Software Engineer</mat-option>
+              <mat-option value="Senior Software Engineer">Senior Software Engineer</mat-option>
+              <mat-option value="HR">HR</mat-option>
+              <mat-option value="Sotware Tester">Sotware Tester</mat-option>
+            </mat-select>
+            <mat-error>This field is mandatory</mat-error>
+          </mat-form-field>
+
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <div class="controles-container">
+          <div class="add-bottom-padding">
+            
+            <mat-radio-group formControlName="gender">
+              <mat-label>Gender</mat-label>
+              <mat-radio-button value="Male">Male</mat-radio-button>
+              <mat-radio-button value="Female">Female</mat-radio-button>
+              <mat-radio-button value="Other">Other</mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Salary</mat-label>
+            <input formControlName="salary" matInput placeholder="₹ Salary" type="number">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>D.O.B</mat-label>
+            <input formControlName="dob" matInput [matDatepicker]="picker" placeholder="D.O.B" [max]="maxDate">
+            <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          
+        
+          <div class="add-bottom-padding">
+            <mat-checkbox formControlName="isPermanent">Permanent Employee</mat-checkbox>
+          </div>
+
+          <div class="button-row">
+            <button mat-raised-button color="primary" type="submit" [disabled]="service.employeeForm.invalid" (click)="onSubmit()">Submit</button>
+            <button mat-raised-button color="warn" (click)="onClose()">Close</button>
+          </div>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </form>

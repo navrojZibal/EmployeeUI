@@ -1,0 +1,29 @@
+
+<div fxLayoutAlign="center center" fxFlexFill class="padding" style="padding-top: 10%;">
+    <mat-card fxFlex="30">
+      <mat-toolbar fxLayoutAlign="center center"  class="toolbar-color">LogIn Page</mat-toolbar>
+        
+        <form fxLayoutAlign="stretch" fxLayout="column" class="form-pad" [formGroup]="loginForm" (ngSubmit)="logIn()">
+
+            <mat-form-field appearance="outline">
+              <input matInput placeholder="Username" type= "text" formControlName="userName">
+              <mat-icon matSuffix>account_circle</mat-icon>
+              <mat-error>Please enter Username</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password">
+              <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              <mat-error *ngIf="f.password.errors?.required">Please enter Password</mat-error>        
+            </mat-form-field>
+            
+            <button  mat-stroked-button color="warn" type="submit" [disabled]="loginForm.invalid">LogIn</button>
+
+            <p fxLayoutAlign="center center" class="text-padding">Not a member?
+              <a href="http://localhost:4200/register" >Register</a>
+            </p>
+            <mat-error *ngIf="error"> Please enter valid username or password</mat-error>
+        </form>
+        
+    </mat-card>
+</div>

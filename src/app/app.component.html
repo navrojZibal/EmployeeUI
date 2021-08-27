@@ -1,0 +1,94 @@
+<mat-toolbar  *ngIf="service.loggedIn()"  class="toolbar-color">
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span >Employee Table</span>
+  <span class="spacer"></span>
+  <button *ngIf = "service.loggedIn()" mat-icon-button (click) = "service.logout()"><mat-icon>power_settings_new</mat-icon></button>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav>
+    <img class="avatar mat-elevation-z8" [src]="" />
+    <h4 class="name">{{name}}</h4>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" routerLink="home" (click)="sidenav.toggle()">
+      <mat-icon>home</mat-icon>
+      <span>Home</span>
+    </button>
+    <button mat-button class="menu-button" (click)="sidenav.toggle();openProfile()">
+      <mat-icon>person</mat-icon>
+      <span>Profile</span>
+    </button>
+
+    <button mat-button class="menu-button" routerLink="cards" (click)="sidenav.toggle()">
+        <mat-icon>card_travel</mat-icon>
+        <span>Cards</span>
+    </button>
+
+    <button mat-button class="menu-button">
+        <mat-icon>info</mat-icon>
+        <span>About</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" >
+        <mat-icon>help</mat-icon>
+        <span>Help</span>
+    </button>
+
+    <button mat-button class="menu-button" (click)="sidenav.toggle();service.logout()">
+      <mat-icon>power_settings_new</mat-icon>
+      <span>LogOut</span>
+  </button>
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<footer *ngIf = "service.loggedIn()" class="footer">
+  <div class="container" >
+   
+    
+    <mat-grid-list cols="2" rowHeight="4:1" style="margin-left: 30px;">
+      <mat-grid-tile>
+      <mat-grid-tile-header>About Us</mat-grid-tile-header>
+        <span style="padding-top: 7%;color: white;">This employment website is a website that deals specifically with employment or careers. 
+          Many employment websites are designed to allow employers to post job requirements for 
+          a position to be filled and are commonly known as job boards.
+        </span>
+      </mat-grid-tile>
+      <mat-grid-tile >
+        <mat-grid-tile-header>Contact Us</mat-grid-tile-header>
+        <button mat-button class="menu-button">
+          <mat-icon>phone</mat-icon>
+          <span>+918427435076</span>
+        </button>
+        <button mat-button class="menu-button">
+          <mat-icon>phone</mat-icon>
+          <span>+919876707073</span>
+        </button>
+        <button mat-button class="menu-button">
+          <mat-icon>phone</mat-icon>
+          <span>+919876707073</span>
+        </button>
+      </mat-grid-tile>
+    </mat-grid-list>
+  
+    <div class="row" fxLayoutAlign="center center">          
+      <button mat-icon-button><mat-icon>facebook</mat-icon></button>
+      <button mat-icon-button><mat-icon>whatsapp</mat-icon></button>
+      <button mat-icon-button><mat-icon>email</mat-icon></button>
+      <button mat-icon-button><mat-icon>pinterest</mat-icon></button>
+
+      <span align="center">© 2021 Copyright</span>
+    </div>
+  </div>
+</footer>
